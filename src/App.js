@@ -2,12 +2,18 @@ import React from "react";
 import "./App.css";
 import Auth from "./components/Auth";
 import Layout from "./components/Layout";
+import { useSelector } from "react-redux";
 
 function App() {
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const itemsList = useSelector(state => state.cart.itemsList);
+ 
+  console.log(itemsList);
+
   return (
     <div className="App">
-      <Auth />
-      {/* <Layout /> */}
+      {!isLoggedIn &&  <Auth />}
+      {isLoggedIn &&  <Layout />}
     </div>
   );
 }
